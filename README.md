@@ -1,21 +1,3 @@
-# Project Structure
-LinearRegressionProject/
-├── data/                # Store dataset files here
-├── models/
-│   ├── linear_regression.py    # Custom Linear Regression model
-│   ├── regularization.py      # Ridge (L2) and Lasso (L1) Regularization
-│   ├── preprocessing.py       # Feature scaling and categorical encoding
-├── metrics/
-│   ├── evaluation.py          # Evaluation metrics (MSE, RMSE, R²)
-├── notebook/
-│   ├── LinearRegressionDemo.ipynb  # Jupyter Notebook for demo and analysis
-├── main.py                   # Script to train and test the model
-├── README.md                 # Project explanation and instructions
-
-
-
-
-
 # Linear Regression from Scratch
 
 This project implements linear regression using various gradient descent methods: **Batch Gradient Descent (GD)**, **Stochastic Gradient Descent (SGD)**, and **Mini-Batch Gradient Descent**. The model is implemented from scratch to gain an understanding of linear regression and optimization techniques.
