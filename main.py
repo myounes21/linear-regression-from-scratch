@@ -2,9 +2,9 @@ import pandas as pd
 from sklearn.metrics import r2_score
 from sklearn.linear_model import LinearRegression, SGDRegressor, Ridge, Lasso
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from models.linear_regression import OLS, BatchGD, SGD, MiniBatchGD
 from models.regularization import L2, L1
+from models.scaling import StandardizationScaler
 
 df = pd.read_csv("data/house.csv")
 
@@ -12,7 +12,7 @@ X = df.drop("House_Price", axis=1)
 y = df["House_Price"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-scaler = StandardScaler()
+scaler = StandardizationScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
