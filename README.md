@@ -42,21 +42,4 @@ This project is built for **learning** and **experimentation**. Instead of relyi
 ---
 
 ## 🗂️ Project Structure
-
-├── data/                        # Dataset files (raw or processed)
-│
-├── models/                      # All model-related code
-│   ├── linear_regression.py     # OLS, Batch GD, SGD, Mini-batch GD implementations
-│   ├── regularization.py        # L1 (Lasso) and L2 (Ridge) regularization logic
-│   ├── scaling.py               # Standardization and Normalization functions
-│   └── encoding.py              # One-hot and label encoding
-│
-├── metrics/                     # Model evaluation metrics
-│   └── evaluation.py            # R² and MSE functions
-│
-├── notebook/                    # Jupyter notebooks for demos
-│   └── LinearRegressionDemo.ipynb
-│
-├── main.py                      # Run training, evaluation, and testing
-├── README.md                    # Project documentation
-
+<pre lang="markdown"> ```bash LinearRegressionProject/ ├── data/ # Store dataset files here ├── models/ │ ├── linear_regression.py # OLS, Batch GD, SGD, Mini-Batch GD │ ├── regularization.py # Ridge (L2), Lasso (L1) │ ├── scaling.py # Standardization, Normalization │ └── encoding.py # One-Hot and Label Encoding ├── metrics/ │ └── evaluation.py # R² Score, MSE ├── notebook/ │ └── LinearRegressionDemo.ipynb # Jupyter Notebook for Demo ├── main.py # Script to run and test models ├── README.md # Project explanation and usage ``` </pre>
