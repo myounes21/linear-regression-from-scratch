@@ -1,10 +1,11 @@
 import pandas as pd
-from sklearn.metrics import r2_score
 from sklearn.linear_model import LinearRegression, SGDRegressor, Ridge, Lasso
+from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 from models.linear_regression import OLS, BatchGD, SGD, MiniBatchGD
 from models.regularization import L2, L1
 from models.scaling import StandardizationScaler
+from metrics.evaluation import r2_score, mean_squared_error
 
 df = pd.read_csv("data/house.csv")
 
