@@ -1,82 +1,62 @@
-# Linear Regression from Scratch
+# 🧠 Linear Regression from Scratch
 
-This project implements linear regression using various gradient descent methods: **Batch Gradient Descent (GD)**, **Stochastic Gradient Descent (SGD)**, and **Mini-Batch Gradient Descent**. The model is implemented from scratch to gain an understanding of linear regression and optimization techniques.
+This project is a complete implementation of **Linear Regression from scratch using NumPy**, designed to be clean, modular, and educational. It covers everything from preprocessing and encoding to regularization and different gradient descent techniques — all without using any machine learning libraries like scikit-learn for the model itself.
 
-## Classes
+---
 
-### 1. **BaseLinearRegression**
-The base class that provides core functionality such as adding a bias term, making predictions, and setting model coefficients.
+## 🚀 Features
 
-- **Methods:**
-  - `add_bias(X)`: Adds a bias term (column of ones) to the feature matrix.
-  - `predict(X)`: Makes predictions based on the learned coefficients.
-  - `set_coefficients()`: Sets the coefficients and intercept after fitting the model.
+- 📈 **Optimization Methods**
+  - OLS (Ordinary Least Squares)
+  - Batch Gradient Descent
+  - Stochastic Gradient Descent
+  - Mini-batch Gradient Descent
 
-### 2. **OLS (Ordinary Least Squares)**
-Implements the linear regression model using the normal equation.
+- 🧩 **Regularization**
+  - L1 Regularization (Lasso)
+  - L2 Regularization (Ridge)
 
-- **Methods:**
-  - `fit(X, y)`: Fits the model using the normal equation to calculate the coefficients directly.
+- 🔧 **Preprocessing**
+  - Standardization
+  - Normalization
 
-### 3. **BatchGD (Batch Gradient Descent)**
-Implements the Batch Gradient Descent algorithm for linear regression.
+- 🎛️ **Encoding**
+  - One-Hot Encoding
+  - Label Encoding
 
-- **Methods:**
-  - `fit(X, y)`: Fits the model using batch gradient descent. The model iterates over the entire dataset to update weights.
+- 📏 **Evaluation Metrics**
+  - R² Score
+  - Mean Squared Error (MSE)
 
-### 4. **SGD (Stochastic Gradient Descent)**
-Implements the Stochastic Gradient Descent algorithm for linear regression.
+---
 
-- **Methods:**
-  - `fit(X, y)`: Fits the model using stochastic gradient descent. It updates weights using a single data point per iteration.
+## 🧠 Why This Project?
 
-### 5. **MiniBatchGD (Mini-Batch Gradient Descent)**
-Implements the Mini-Batch Gradient Descent algorithm for linear regression.
+This project is built for **learning** and **experimentation**. Instead of relying on external ML libraries, every step — from optimization to regularization — is written from scratch using only NumPy. It’s a great resource if you're learning:
 
-- **Methods:**
-  - `fit(X, y)`: Fits the model using mini-batch gradient descent. The model updates weights based on small random subsets of data (mini-batches).
+- The math behind regression
+- How regularization affects optimization
+- How preprocessing affects learning
+- How to structure ML code modularly
 
-## Methods
+---
 
-### `fit(X, y)`
-Fits the model to the data using the corresponding gradient descent method or normal equation.
+## 🗂️ Project Structure
 
-### `predict(X)`
-Makes predictions based on the learned coefficients.
-
-### `add_bias(X)`
-Adds a bias term (column of ones) to the feature matrix.
-
-### `set_coefficients()`
-Sets the coefficients and intercept after fitting the model.
-
-## How to Use
-
-### Example Code
-
-```python
-from models.linear_regression import OLS, BatchGD, SGD, MiniBatchGD
-
-# Load your dataset
-# X_train, y_train = ...
-
-# OLS Example
-model_ols = OLS()
-model_ols.fit(X_train, y_train)
-predictions_ols = model_ols.predict(X_test)
-
-# Batch Gradient Descent Example
-model_batch_gd = BatchGD(alpha=0.01, max_itr=1000)
-model_batch_gd.fit(X_train, y_train)
-predictions_batch_gd = model_batch_gd.predict(X_test)
-
-# Stochastic Gradient Descent Example
-model_sgd = SGD(alpha=0.01, max_itr=1000)
-model_sgd.fit(X_train, y_train)
-predictions_sgd = model_sgd.predict(X_test)
-
-# Mini-Batch Gradient Descent Example
-model_mini_batch_gd = MiniBatchGD(alpha=0.01, max_itr=1000, batch_size=32)
-model_mini_batch_gd.fit(X_train, y_train)
-predictions_mini_batch_gd = model_mini_batch_gd.predict(X_test)
+├── data/                        # Dataset files (raw or processed)
+│
+├── models/                      # All model-related code
+│   ├── linear_regression.py     # OLS, Batch GD, SGD, Mini-batch GD implementations
+│   ├── regularization.py        # L1 (Lasso) and L2 (Ridge) regularization logic
+│   ├── scaling.py               # Standardization and Normalization functions
+│   └── encoding.py              # One-hot and label encoding
+│
+├── metrics/                     # Model evaluation metrics
+│   └── evaluation.py            # R² and MSE functions
+│
+├── notebook/                    # Jupyter notebooks for demos
+│   └── LinearRegressionDemo.ipynb
+│
+├── main.py                      # Run training, evaluation, and testing
+├── README.md                    # Project documentation
 

@@ -158,3 +158,13 @@ class LabelEncoding:
                 df_decoded[col] = df_encoded[col].map(reverse_map)
 
         return df_decoded
+
+data = {'color': ['red', 'green', 'blue', 'red', 'green'],
+        'size': ['small', 'medium', 'large', 'small', 'medium'],
+        'price': [10, 15, 20, 12, 18]}
+df_sample = pd.DataFrame(data)
+
+
+encoder = OneHotEncoding()
+encoded_df = encoder.fit_transform(df_sample)
+encoded_df
