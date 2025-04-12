@@ -41,5 +41,25 @@ This project is built for **learning** and **experimentation**. Instead of relyi
 
 ---
 
-## 🗂️ Project Structure
-<pre lang="markdown"> ```bash LinearRegressionProject/ ├── data/ # Store dataset files here ├── models/ │ ├── linear_regression.py # OLS, Batch GD, SGD, Mini-Batch GD │ ├── regularization.py # Ridge (L2), Lasso (L1) │ ├── scaling.py # Standardization, Normalization │ └── encoding.py # One-Hot and Label Encoding ├── metrics/ │ └── evaluation.py # R² Score, MSE ├── notebook/ │ └── LinearRegressionDemo.ipynb # Jupyter Notebook for Demo ├── main.py # Script to run and test models ├── README.md # Project explanation and usage ``` </pre>
+## 📁 Project Structure
+
+```bash
+LinearRegressionProject/
+├── data/                        # Store dataset files here
+│
+├── models/
+│   ├── linear_regression.py     # OLS, Batch GD, SGD, Mini-Batch GD
+│   ├── regularization.py        # Ridge (L2), Lasso (L1)
+│   ├── scaling.py               # Standardization, Normalization
+│   └── encoding.py              # One-Hot and Label Encoding
+│
+├── metrics/
+│   └── evaluation.py            # Evaluation metrics: R², MSE
+│
+├── notebook/
+│   └── LinearRegressionDemo.ipynb  # Jupyter Notebook for step-by-step usage
+│
+├── main.py                      # Script to train/test model and run pipeline
+├── README.md                    # Project overview, instructions, and structure
+```
+
