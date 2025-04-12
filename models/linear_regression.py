@@ -2,10 +2,14 @@ import numpy as np
 
 
 class BaseLinearRegression:
-    def __init__(self):
+    def __init__(self, lr=0.01, max_itr=1000, tol=1e-6, batch_size=32):
         self.W = None
         self.coef_ = None
         self.intercept_ = None
+        self.lr = lr
+        self.max_itr = max_itr
+        self.tol = tol
+        self.batch_size = batch_size
 
     def add_bias(self, X):
         """Add bias term (column of ones) to the feature matrix X"""
@@ -44,12 +48,6 @@ class OLS(BaseLinearRegression):
 
 # batch gradiant decent
 class BatchGD(BaseLinearRegression):
-
-    def __init__(self, alpha=0.01, max_itr=1000):
-        super().__init__()
-        self.alpha = alpha
-        self.max_itr = max_itr
-
     def fit(self, X, y):
         """Fit the model using gradient descent"""
         X_bias = self.add_bias(X)  # Add bias term to X
@@ -70,10 +68,10 @@ class BatchGD(BaseLinearRegression):
             dw = (2 / len(X)) * X_bias.T @ (y_hat - y)
 
             # Update weights
-            self.W -= self.alpha * dw
+            self.W -= self.lr * dw
 
             # Early stopping based on loss change
-            if abs(prev_loss - loss) < 1e-6:
+            if abs(prev_loss - loss) < self.tol:
                 print(f"Converged in {i} iterations.")
                 break
 
@@ -83,10 +81,7 @@ class BatchGD(BaseLinearRegression):
 
 
 # Stochastic Gradient Descent
-class SGD(BatchGD):
-    def __init__(self, alpha=0.01, max_itr=1000):
-        super().__init__(alpha, max_itr)
-
+class SGD(BaseLinearRegression):
     def fit(self, X, y):
         X_bias = self.add_bias(X)
         n_samples = X_bias.shape[0]
@@ -113,14 +108,14 @@ class SGD(BatchGD):
             dw = 2 * (yi_hat - yi) * xi
 
             # Update weights
-            self.W -= self.alpha * dw
+            self.W -= self.lr * dw
 
             # Compute total loss
             if i % 100 == 0:
                 y_hat_all = X_bias @ self.W
                 loss = np.mean((y_hat_all - y) ** 2)
 
-                if abs(prev_loss - loss) < 1e-6:
+                if abs(prev_loss - loss) < self.tol:
                     break
                 prev_loss = loss
 
@@ -129,16 +124,13 @@ class SGD(BatchGD):
 
 # Mini Batch gradiant decent
 class MiniBatchGD(BatchGD):
-    def __init__(self, alpha=0.01, max_itr=1000, batch_size=32):
-        super().__init__(alpha, max_itr)
-        self.batch_size = batch_size
-
     def fit(self, X, y):
-        X_bias = self.add_bias(X)
-        y = np.array(y)  # convert to array in case it's pandas Series
-        n_samples, n_features = X_bias.shape
+        X_bias = self.add_bias(X)  # This should add an extra column of ones for the bias
+        n_samples, n_features = X_bias.shape  # n_features should now include the bias term
 
-        self.W = np.zeros(n_features)
+        self.W = np.zeros(n_features)  # Initialize weights to match the size of X_bias (including the bias)
+
+        y = np.array(y)  # Convert target variable to numpy array to avoid issues with pandas index during training
 
         prev_loss = float('inf')
 
@@ -162,14 +154,14 @@ class MiniBatchGD(BatchGD):
                 dw = (2 / len(xb)) * xb.T @ (yb_hat - yb)
 
                 # Update weights
-                self.W -= self.alpha * dw
+                self.W -= self.lr * dw
 
             # Calculate loss after each epoch
-            y_hat_all = X_bias @ self.W
+            y_hat_all = X_bias @ self.W  # Now X_bias and self.W should be compatible
             loss = np.mean((y_hat_all - y) ** 2)
 
             # Early stopping
-            if abs(prev_loss - loss) < 1e-6:
+            if abs(prev_loss - loss) < self.tol:
                 print(f"Converged at epoch {i}")
                 break
             prev_loss = loss
